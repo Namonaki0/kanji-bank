@@ -1,0 +1,100 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.panel {
+  position: fixed;
+  inset: 0;
+  background: white;
+  color: black;
+  transform: translateX(100%);
+  transition: all 100ms linear;
+  box-shadow: 0px 0px 5px rgb(0, 0, 0);
+  overflow-y: scroll;
+}
+.panel__show {
+  transform: translateX(30%);
+}
+.panel .panel-close {
+  position: sticky;
+  left: 65%;
+  top: 5%;
+}
+.panel .details {
+  margin-top: -40px;
+}
+.panel .details .add-to-bank {
+  outline: 1px solid silver;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+  padding: 0.5rem;
+  cursor: pointer;
+}
+.panel .details .bank-item {
+  border-bottom: 1px solid silver;
+  padding: 1rem;
+}
+.panel .bank-wrapper {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+main {
+  display: flex;
+}
+main #output {
+  max-width: 30%;
+  background: whitesmoke;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 1rem;
+}
+main #output .kanji__selected {
+  color: orange;
+}
+main .background-overlay {
+  background: #1c1c1c;
+  width: 70%;
+  display: flex;
+  justify-content: center;
+}
+main .background-overlay #lists {
+  color: white;
+  position: fixed;
+  top: 25%;
+  display: flex;
+  width: 20%;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+main .background-overlay #lists a {
+  color: silver;
+  font-size: 24px;
+}
+main .background-overlay #lists .list__selected {
+  color: orange;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  font-size: 36px;
+  padding: 10px;
+  transition: all 100ms linear;
+}
+a:hover {
+  color: silver;
+}
+
+.corner-bank {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=panel.css.map */
