@@ -1,6 +1,44 @@
-import { clickedList } from "./kanji.js";
+import { KanjiApp } from "./kanji.js";
 
-export const lists = [
+export class KanjiListManager {
+  constructor(lists) {
+    this.lists = lists;
+    this.listsOutput = document.getElementById("lists");
+    this.displayLists();
+    this.addClickHandler();
+  }
+
+  displayLists() {
+    this.lists.forEach((list) => {
+      const listItem = document.createElement("a");
+      listItem.href = "#";
+      listItem.textContent = list;
+      listItem.classList.add("list");
+      listItem.dataset.listId = list;
+      this.listsOutput.appendChild(listItem);
+    });
+  }
+
+  addClickHandler() {
+    this.listsOutput.addEventListener("click", (e) => {
+      e.preventDefault();
+      if (e.target.tagName === "A") {
+        this.clearSelectedClass();
+        e.target.classList.add("list__selected");
+        const kanjiApp = new KanjiApp();
+        kanjiApp.clickedList(e.target.dataset.listId);
+      }
+    });
+  }
+
+  clearSelectedClass() {
+    this.listsOutput.querySelectorAll(".list").forEach((list) => {
+      list.classList.remove("list__selected");
+    });
+  }
+}
+
+const kanjiListManager = new KanjiListManager([
   "joyo",
   "jouyou",
   "jinmeiyo",
@@ -16,28 +54,4 @@ export const lists = [
   "grade-6",
   "grade-8",
   "all",
-];
-
-const listsOutput = document.getElementById("lists");
-
-(async function displayLists(lists) {
-  lists.forEach((list) => {
-    const listItem = document.createElement("a");
-    listItem.href = "#";
-    listItem.textContent = list;
-    listItem.classList.add("list");
-    listItem.dataset.listId = list;
-    listsOutput.appendChild(listItem);
-  });
-})(lists);
-
-listsOutput.addEventListener("click", (e) => {
-  e.preventDefault();
-  if (e.target.tagName === "A") {
-    listsOutput.querySelectorAll(".list").forEach((list) => {
-      list.classList.remove("list__selected");
-    });
-    e.target.classList.add("list__selected");
-    clickedList(e.target.dataset.listId);
-  }
-});
+]);
